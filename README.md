@@ -5,6 +5,7 @@ This is a group project from BSCS-2A (NS) 2020. Technological University Of The 
 Subject: Object Oriented Programming, Kenjon Tarnate
 
 Members:
+
 Alvarez, Gil Christian C.
 
 Brondial, Kenneth
