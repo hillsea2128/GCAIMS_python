@@ -1,0 +1,132 @@
+{% extends 'inv/base.html' %}
+
+{% block body %}
+
+{% if header|lower == "laptops" or header|lower == "desktops" or header|lower == "mobiles" %}
+  <div class="add_buttons">
+
+    <div class="button-group">
+	  <a href="{% url 'index' %}" class="btn btn-warning btn-md btn-trim" role="button"> << Back to Home</a>&nbsp;&nbsp;&nbsp;
+      
+	  <a href="{% url 'add_laptop' %}" class="btn btn-primary btn-md btn-trim" role="button"> + Add a Laptop</a>&nbsp;&nbsp;&nbsp;
+
+      <a href="{% url 'add_desktop' %}" class="btn btn-primary btn-md btn-trim" role="button"> + Add a Desktop</a>&nbsp;&nbsp;&nbsp;
+
+      <a href="{% url 'add_mobile' %}" class="btn btn-primary btn-md btn-trim" role="button"> + Add a Mobile Device</a>&nbsp;&nbsp;&nbsp;
+
+    </div>
+
+  </div>
+{% endif %}
+  <div>
+  <center>
+	{% if header|lower == "laptops" or header|lower == "desktops" or header|lower == "mobiles" %}
+		<h4>Currently Viewing {{ header }}</h4>
+    {% else %}
+		<h1>Welcome to our Device Database!</h4>
+		<h3>A Project by BSCS-2A (NS)</h2>
+		<h5>Members:</h1>
+		<p>
+				<li>Alvarez, Gil Christian C.</li>
+				<li>Brondial, Kenneth</li>
+				<li>Piñon, Vince Bryan</li>
+		</p>
+		<br>
+		<h2> There are currently: </h2><br>
+		<h3>{{ laptopcount }} Laptop(s), {{ desktopcount }} Desktop(s), and {{ mobilecount }} Mobile Device(s)</h3>
+	{% endif %}
+	
+	
+	
+	</center>
+  </div>
+{% if header|lower == "laptops" or header|lower == "desktops" or header|lower == "mobiles" %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Issues</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for item in items %}
+
+      <tr>
+        <td>{{ item.pk }}
+        <td>{{ item.type }}</td>
+        <td>P {{ item.price }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.issues }}</td>
+
+        {% if header|lower == "laptops" %}
+        <td>
+            <a href="{% url 'edit_laptop' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_laptop' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% elif header|lower == "desktops" %}
+        <td>
+            <a href="{% url 'edit_desktop' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_desktop' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+		{% elif header|lower == "mobiles" %}
+        <td>
+            <a href="{% url 'edit_mobile' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_mobile' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+
+        {% endif %}
+
+
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% else %}
+<br><br>
+<center>
+	<div>
+		<h3>You can add stuff here:</h3><br>
+
+		<div class="add_buttons">
+
+		<div class="button-group">
+		  <a href="{% url 'add_laptop' %}" class="btn btn-primary btn-md btn-trim" role="button"> + Add a Laptop</a>&nbsp;&nbsp;&nbsp;
+
+		  <a href="{% url 'add_desktop' %}" class="btn btn-primary btn-md btn-trim" role="button"> + Add a Desktop</a>&nbsp;&nbsp;&nbsp;
+
+		  <a href="{% url 'add_mobile' %}" class="btn btn-primary btn-md btn-trim" role="button"> + Add a Mobile Device</a>&nbsp;&nbsp;&nbsp;
+
+		</div>
+
+	  </div>
+	  <br><br>
+	  <h3>Or, you can view stuff here:</h3><br>
+	  <div class="add_buttons">
+
+		<div class="button-group">
+		  <a href="{% url 'display_laptops' %}" class="btn btn-warning btn-md btn-trim" role="button">View all Laptops</a>&nbsp;&nbsp;&nbsp;
+
+		  <a href="{% url 'display_desktops' %}" class="btn btn-warning btn-md btn-trim" role="button">View all Desktops</a>&nbsp;&nbsp;&nbsp;
+
+		  <a href="{% url 'display_mobiles' %}" class="btn btn-warning btn-md btn-trim" role="button">View all Mobile Devices</a>&nbsp;&nbsp;&nbsp;
+
+		</div>
+
+	  </div>
+	  
+	  
+		
+  
+	</div>
+</center>
+{% endif %}
+
+{% endblock %}
