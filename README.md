@@ -6,5 +6,7 @@ Subject: Object Oriented Programming, Kenjon Tarnate
 
 Members:
 Alvarez, Gil Christian C.
+
 Brondial, Kenneth
+
 Piñon, Vince Bryan
